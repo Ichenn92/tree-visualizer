@@ -1,2 +1,5 @@
-<%= react_component("Hello", { name: @welcome_message }) %>
-<%= react_component("Tree", {values: [5, 3, 7, 1, 4, 11, 13]}) %>
+<h1><%= react_component("Hello", { name: @welcome_message }) %></h1>
+<h2>Based_tree</h2>
+<%= react_component("Tree", {values: @based_tree}) %>
+<h2>Based_tree_balanced</h2>
+<%= react_component("Tree", {values: @tree}) %>
