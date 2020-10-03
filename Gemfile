@@ -55,4 +55,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Using front-end React
 gem 'react-rails'
-gem 'tree_handler', '~> 0.1.0'
+gem 'tree_handler', '~> 0.1.2'
