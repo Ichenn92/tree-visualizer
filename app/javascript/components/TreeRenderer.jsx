@@ -7,10 +7,21 @@ import TreeStateRenderer from "./TreeStateRenderer.jsx";
 class TreeRenderer extends React.Component {
   constructor(props) {
     super(props);
+    let tree = new NodeTree(props.values || []);
+    let actions = props.actions || [];
+    for(let action of actions) {
+      if(action.value == null)
+        continue;
+
+      if(action.action == "add")
+        tree.add(action.value);
+      else if(action.action == "delete")
+        tree.delete(action.value);
+    }
     this.state = {
-      tree: new NodeTree(props.values || [5, 3, 7, 1, 4, 11, 13]),
+      tree: tree,
       currentState: 0,
-      addValue: 0,
+      value: 0,
     };
 
     this.first_state = this.first_state.bind(this);
@@ -20,12 +31,19 @@ class TreeRenderer extends React.Component {
 
 
     this.add = this.add.bind(this);
+    this.pop = this.pop.bind(this);
   }
 
   add() {
-    if(this.state.addValue == null)
+    if(this.state.value == null)
       return;
-    this.state.tree.add(this.state.addValue);  // Not a good pattern, should work on copy if possible
+    this.state.tree.add(this.state.value);  // Not a good pattern, should work on copy if possible
+  }
+
+  pop() {
+    if(this.state.value == null)
+      return;
+    this.state.tree.delete(this.state.value);  // Not a good pattern, should work on copy if possible
   }
 
   first_state() {
@@ -50,13 +68,14 @@ class TreeRenderer extends React.Component {
       <div>
           <TreeStateRenderer state={this.state.tree.states[this.state.currentState]}/>
           <button onClick={this.add}>Add</button>
+          <button onClick={this.pop}>Delete</button>
           <input
             type="number"
             id="value"
-            value={this.state.addValue}
+            value={this.state.value}
             onChange={
               (event) => {
-                this.setState({addValue: event.target.value});
+                this.setState({value: event.target.value});
                 event.preventDefault();
               }
             }
