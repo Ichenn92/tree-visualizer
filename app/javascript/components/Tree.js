@@ -57,6 +57,60 @@ class NodeTree {
             this.save_state();
     }
 
+    _pop_node(node) {
+        this.save_state(node);
+        if(node.left && node.right) {
+            let previous = node;
+            let current = node.left;
+            while(current.right) {
+                previous = current;
+                current = current.right;
+            }
+            node.value = current.value;
+            if(previous == node)
+                node.left = current.left;
+            else
+                previous.right = current.left;
+            return node;
+        }
+        
+        return node.left || node.right;
+
+    }
+
+    delete(value, save=true) {
+        if(!this.root)
+            return;
+
+        let node = this.root;
+        if(node.value == value) {
+            this.root = this._pop_node(this.root);
+        }
+
+        while(node) {
+            if(save)
+                this.save_state(node);
+
+            if(node.value < value) {
+                if(node.right && node.right.value == value) {
+                    node.right = this._pop_node(node.right);
+                    break;
+                }
+                node = node.right;
+            }
+            else {
+                if(node.left && node.left.value == value) {
+                    node.left = this._pop_node(node.left);
+                    break;
+                }
+                node = node.left;
+            }
+
+        }
+        if(save)
+            this.save_state();
+    }
+
     width(action) {
     }
 
