@@ -10,6 +10,7 @@ class NodeTree {
     }
 
     add(value, save=true) {
+        value = parseInt(value);  // prevent receiving negative value as string
         if(!this.root) {
             this.root = {
                 value: value,
@@ -144,37 +145,39 @@ class NodeTree {
 
     list() {
         if(!this.root)
-            return [];
+            return {
+                depth: 0,
+                list: []
+            };
         
         let nodes = [{
             node: this.root,
             depth: 0,
+            index: 0,
             parent: null,
             current: this.root.isCurrent
         }];
 
+        let res = [];
 
-        var current_level = [];
-        let depth_index = 0;
-
-        var levels = [current_level];
+        let max_depth = 0;
 
         for(let i = 0; i < nodes.length; ++i) {
-            let node = nodes[i].node;
-            let depth = nodes[i].depth;
-            let parent = nodes[i].parent;
+            let data = nodes[i]
+            let node = data.node;
+            let depth = data.depth;
+            let index = data.index;
+            let parent = data.parent;
 
             
-            if(depth > depth_index) {
-                depth_index = depth;
-                current_level = [];
-                levels.push(current_level);
+            if(depth > max_depth) {
+                max_depth = depth;
             }
 
-            let current_index = current_level.length;
-            
-            current_level.push({
+            res.push({
                 value: node.value,
+                depth: depth,
+                index: index,
                 parent: parent,
                 current: node.isCurrent
             });
@@ -183,17 +186,22 @@ class NodeTree {
                 nodes.push({
                     node: node.left,
                     depth: depth + 1,
-                    parent: current_index
+                    index: 2 * index,
+                    parent: index
                 })
             if(node.right)
                 nodes.push({
                     node: node.right,
                     depth: depth + 1,
-                    parent: current_index
+                    index: 2 * index + 1,
+                    parent: index
                 })
         }
 
-        return levels
+        return {
+            depth: max_depth,
+            list: res
+        };
     }
 
 };

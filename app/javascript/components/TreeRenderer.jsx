@@ -19,6 +19,8 @@ class TreeRenderer extends React.Component {
         tree.delete(action.value);
     }
     this.state = {
+      width: props.width || 800,
+      height: props.height || 800,
       tree: tree,
       currentState: 0,
       value: 0,
@@ -66,33 +68,37 @@ class TreeRenderer extends React.Component {
   render() {
     return (
       <div>
-          <TreeStateRenderer state={this.state.tree.states[this.state.currentState]}/>
-          <button onClick={this.add}>Add</button>
-          <button onClick={this.pop}>Delete</button>
-          <input
-            type="number"
-            id="value"
-            value={this.state.value}
-            onChange={
-              (event) => {
-                this.setState({value: event.target.value});
-                event.preventDefault();
-              }
-            }
+         <TreeStateRenderer
+            state={this.state.tree.states[this.state.currentState]}
+            width={ this.state.width }
+            height={ this.state.height }
           />
+        <button onClick={this.add}>Add</button>
+        <button onClick={this.pop}>Delete</button>
+        <input
+          type="number"
+          id="value"
+          value={this.state.value}
+          onChange={
+            (event) => {
+              this.setState({value: event.target.value});
+              event.preventDefault();
+            }
+          }
+        />
 
-          <button onClick={this.first_state}>
-            &#10096;
-          </button>
-          <button onClick={this.previous}>
-            prev
-          </button>
-          <button onClick={this.next}>
-            next
-          </button>
-          <button onClick={this.last_state}>
-            &#10097;
-          </button>
+        <button onClick={this.first_state}>
+          &#10096;
+        </button>
+        <button onClick={this.previous}>
+          prev
+        </button>
+        <button onClick={this.next}>
+          next
+        </button>
+        <button onClick={this.last_state}>
+          &#10097;
+        </button>
       </div>
     );
   }
