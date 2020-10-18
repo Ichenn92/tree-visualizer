@@ -1,17 +1,2 @@
-<%= react_component("Hello", { name: @welcome_message }) %>
-<%= react_component("TreeRenderer", {
-    values: [1, 23, 4],
-    actions: [
-        {action: "add", value: 4},
-        {action: "add", value: 1},
-        {action: "add", value: 3},
-        {action: "add", value: 5},
-        {action: "delete", value: 4},
-        {action: "add", value: 4},
-        {action: "add", value: 8},
-        {action: "delete", value: 1},
-        {action: "add", value: 4},
-        {action: "delete", value: 5},
-    ]
-    
-}) %>
+<h2>Codemirror</h2>
+<%= react_component("Editor") %>

