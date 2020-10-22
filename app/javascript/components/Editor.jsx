@@ -69,14 +69,16 @@ Here are the build-in method to play around with the binary tree
       theme: "darcula"
     };
     return (
-      <div>
-        <div>
-          <CodeMirror value={this.state.code} onChange={this.updateCode} options={options} />
-          <button onClick={this.generateTree}>run code</button>
-          <button onClick={this.explanation}>Info</button>
-        </div>
-        <div>
-          <TreeRenderer key={this.state.nbr_iterations} values={this.state.values} actions={this.state.actions} />
+      <div className="mx-auto">
+        <div className="row">
+          <div className="col" id="editor">
+            <CodeMirror value={this.state.code} onChange={this.updateCode} options={options} />
+            <button onClick={this.generateTree}>run code</button>
+            <button onClick={this.explanation}>Info</button>
+          </div>
+          <div className="col" id="display">
+            <TreeRenderer key={this.state.nbr_iterations} values={this.state.values} actions={this.state.actions} />
+          </div>
         </div>
       </div>
     )
