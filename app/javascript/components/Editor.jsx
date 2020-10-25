@@ -7,6 +7,7 @@ import 'codemirror/addon/edit/matchbrackets';
 import 'codemirror/keymap/sublime';
 import 'codemirror/theme/darcula.css';
 import 'codemirror/mode/ruby/ruby.js';
+import '../stylesheets/codemirror.css';
 
 class Editor extends React.Component {
   constructor(props) {
@@ -69,15 +70,19 @@ Here are the build-in method to play around with the binary tree
       theme: "darcula"
     };
     return (
-      <div className="mx-auto">
-        <div className="row">
+      <div className="mx-auto content-section" style={{display : 'flex'}}>
+        <div className="row " style={{flex : '1 1 auto'}}>
           <div className="col" id="editor">
-            <CodeMirror value={this.state.code} onChange={this.updateCode} options={options} />
-            <button onClick={this.generateTree}>run code</button>
-            <button onClick={this.explanation}>Info</button>
+            <CodeMirror className="CodeMirror" value={this.state.code} onChange={this.updateCode} options={options}/>
+            <div className="buttons">
+              <button className="CodeMirror-button" onClick={this.generateTree}>run code</button>
+              <button className="CodeMirror-button" onClick={this.explanation}>Info</button>
+            </div>
           </div>
           <div className="col" id="display">
-            <TreeRenderer key={this.state.nbr_iterations} values={this.state.values} actions={this.state.actions} />
+            <div className="container-box">
+              <TreeRenderer key={this.state.nbr_iterations} values={this.state.values} actions={this.state.actions} />
+            </div>
           </div>
         </div>
       </div>

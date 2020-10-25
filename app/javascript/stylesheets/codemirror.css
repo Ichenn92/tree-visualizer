@@ -1,0 +1,21 @@
+.navigation-bar {
+  height: 5vh;
+}
+
+.content-section {
+  height: 95vh;
+}
+
+.CodeMirror {
+  height: inherit;
+  width: 100%;
+  height: 100%;
+}
+
+.buttons {
+  bottom: 15px;
+  position: absolute;
+}
+.CodeMirror-button {
+  position: relative;
+}
