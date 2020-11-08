@@ -1,4 +1,4 @@
-.side-bar{
+.side-bar, .side-bar-toggled{
   position: absolute;
   left: -280px;
   display: flex;
@@ -6,10 +6,12 @@
   height: 100%;
   z-index: 10;
   background-color: white;
+  transition: 0.5s;
 }
 
 .side-bar-toggled{
-  transform: translateX(+280px)
+  transform: translateX(+280px);
+  transition: 0.5s;
 }
 
 .btn{

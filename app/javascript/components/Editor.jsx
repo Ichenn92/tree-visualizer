@@ -1,5 +1,6 @@
 import React from "react";
 import TreeRenderer from "./TreeRenderer.jsx";
+import LanguageSideBar from "./LanguageSideBar.jsx";
 import CodeMirror from 'react-codemirror';
 import 'codemirror/addon/display/autorefresh';
 import 'codemirror/addon/comment/comment';
@@ -72,12 +73,12 @@ Here are the build-in method to play around with the binary tree
     return (
       <div className="displays">
         <div className="display-editor">
-            <CodeMirror value={this.state.code} onChange={this.updateCode} options={options} />
-            <div className="buttons">
-              <button className="white-empty-btn" onClick={this.explanation}>Language</button>
-              <button className="red-btn" onClick={this.generateTree}>RUN</button>
-              <button className="white-empty-btn" onClick={this.explanation}>Info</button>
-            </div>
+          <CodeMirror value={this.state.code} onChange={this.updateCode} options={options} />
+          <div className="buttons">
+            <button className="white-empty-btn" onClick={this.openLanguageSideBar}>Language</button>
+            <button className="red-btn" onClick={this.generateTree}>RUN</button>
+            <button className="white-empty-btn" onClick={this.explanation}>Info</button>
+          </div>
         </div>
         <div className="display-tree">
           <TreeRenderer key={this.state.nbr_iterations} values={this.state.values} actions={this.state.actions} />

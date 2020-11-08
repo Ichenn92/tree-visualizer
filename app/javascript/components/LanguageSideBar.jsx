@@ -6,13 +6,13 @@ class LanguageSideBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      position: '0px'
+      style: 'side-bar'
     };
   }
 
   toggleSideBar = () => {
     this.setState({
-      position: '280px'
+      style: 'side-bar-toggled'
     });
   }
 
@@ -21,16 +21,20 @@ class LanguageSideBar extends Component {
     <OutsideClickHandler
       onOutsideClick={() => {
         this.setState({
-          position: '0px'
+          style: 'side-bar'
         });
       }}
     >
-     <div className="side-bar" style={{transform: `translateX(${this.state.position})`}}>
+     <div className={this.state.style}>
         <ul className="languages">
           <li>C++</li>
-          <li>C++</li>
-          <li>C++</li>
-          <li>C++</li>
+          <li>Dart</li>
+          <li>Java</li>
+          <li>Javascript</li>
+          <li>Python</li>
+          <li>Ruby</li>
+          <li>Swift</li>
+          <li>Typescript</li>
         </ul>
         <button className="btn" onClick={this.toggleSideBar}>Toggle LanguageSideBar</button>
       </div>
