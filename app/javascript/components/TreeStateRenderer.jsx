@@ -86,7 +86,7 @@ export default (props) => {
     };
  
     const draw = (p5) => {
-        p5.background(55);
+        p5.background('#424B54');
 
         p5.translate(offsetX, offsetY);
         p5.scale(scale);
@@ -110,15 +110,15 @@ export default (props) => {
                 let parent_x = previous_unit * (parent + 1) - HALF_RECT;
                 let parent_y = HEIGHT_UNIT * depth + RECT_SIZE;
                 // let parent_y = HEIGHT_UNIT * (2 * depth - 1) + RECT_SIZE;
-                p5.line(x + HALF_RECT, y, parent_x + HALF_RECT, parent_y);
+                p5.line(x, y, parent_x, parent_y - RECT_SIZE);
             }
 
-            let color = 100;
+            let color = '#4CABE5';
             if(current)
                 color = 200;
 
             p5.fill(color);
-            p5.rect(x, y, RECT_SIZE, RECT_SIZE);
+            p5.circle(x, y, RECT_SIZE);
             p5.fill(0);
             p5.text(value, x, y);
         }

@@ -1,0 +1,65 @@
+.displays{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: -1;
+}
+
+.relative-parent{
+  position: relative;
+  text-align: center;
+}
+
+.display-editor{
+  display: flex;
+  flex-basis: 100%;
+  height: 100%;
+  padding: 34px;
+  margin: 34px;
+  border-radius: 34px;
+  background-color: #2B2B2B;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.display-tree{
+  flex-basis: 100%;
+  padding: 34px;
+  margin: 34px;
+}
+
+.CodeMirror{
+  height: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.red-btn{
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--red);
+  color: white;
+  border-style: none;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.white-empty-btn{
+  height: 56px;
+  border-radius: 28px;
+  padding: 0 28px;
+  color: white;
+  border-color: white;
+  background: none;
+
+}
+
+#run-btn{
+  position: absolute;
+  top: 100%;
+}
+
+.buttons{
+  display: flex;
+  justify-content: space-between;
+}

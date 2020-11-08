@@ -7,6 +7,7 @@ import 'codemirror/addon/edit/matchbrackets';
 import 'codemirror/keymap/sublime';
 import 'codemirror/theme/darcula.css';
 import 'codemirror/mode/ruby/ruby.js';
+import '../stylesheets/editor.css';
 
 class Editor extends React.Component {
   constructor(props) {
@@ -66,16 +67,21 @@ Here are the build-in method to play around with the binary tree
       lineNumbers: true,
       mode: "ruby",
       tabSize: 2,
-      theme: "darcula"
+      theme: "darcula",
     };
     return (
-      <div>
-        <div>
-          <CodeMirror value={this.state.code} onChange={this.updateCode} options={options} />
-          <button onClick={this.generateTree}>run code</button>
-          <button onClick={this.explanation}>Info</button>
+      <div className="displays">
+        <div className="display-editor">
+          <div className="relative-parent">
+            <CodeMirror value={this.state.code} onChange={this.updateCode} options={options} />
+            <button className="red-btn" id="run-btn" onClick={this.generateTree}>run code</button>
+            <div className="buttons">
+              <button className="white-empty-btn" onClick={this.explanation}>SELECT LANUAGE</button>
+              <button className="red-btn" onClick={this.explanation}>Info</button>
+            </div>
+          </div>
         </div>
-        <div>
+        <div className="display-tree">
           <TreeRenderer key={this.state.nbr_iterations} values={this.state.values} actions={this.state.actions} />
         </div>
       </div>

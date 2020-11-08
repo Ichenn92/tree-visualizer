@@ -1,0 +1,45 @@
+nav{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-height: 5vh;
+}
+
+.brand-name p{
+  position: absolute;
+  left: 3.19%;
+  right: 84.86%;
+  top: 1.44%;
+  bottom: 91.78%;
+
+  font-family: Monofett;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 25px;
+
+  text-align: center;
+
+  color: var(--main-bg-color);
+}
+
+.nav-links{
+  z-index: 1;
+  display: flex;
+  justify-content: space-around;
+  width: 40%;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 25px;
+}
+.nav-links a{
+  color: var(--main-bg-color);
+}
+
+#curve-bg{
+  position: absolute;
+  top: 0px;
+  width:100%;
+}
