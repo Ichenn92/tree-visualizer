@@ -1,0 +1,21 @@
+.side-bar{
+  position: absolute;
+  left: -280px;
+  display: flex;
+  width: 280px;
+  height: 100%;
+  z-index: 10;
+  background-color: white;
+}
+
+.side-bar-toggled{
+  transform: translateX(+280px)
+}
+
+.btn{
+  position: absolute;
+  left: 280px;
+  width: 280px;
+  z-index: 10;
+  background-color: white;
+}
