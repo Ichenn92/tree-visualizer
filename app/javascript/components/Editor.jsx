@@ -19,7 +19,9 @@ class Editor extends React.Component {
       code: 'tree = TreesApi.new [6,2,78,1,3,24]',
       values: [],
       actions: [],
-      nbr_iterations: 0
+      nbr_iterations: 0,
+      currentLanguage: 'Ruby',
+      sideBarStyle: 'side-bar',
     };
   }
 
@@ -63,25 +65,42 @@ Here are the build-in method to play around with the binary tree
       });
   }
 
+  toggleSideBar = (newStyle) => {
+    this.setState({ sideBarStyle: newStyle });
+  }
+
   render() {
     let options = {
       lineNumbers: true,
-      mode: "ruby",
+      mode: this.state.currentLanguage,
       tabSize: 2,
       theme: "darcula",
     };
     return (
-      <div className="displays">
-        <div className="display-editor">
-          <CodeMirror value={this.state.code} onChange={this.updateCode} options={options} />
-          <div className="buttons">
-            <button className="white-empty-btn" onClick={this.openLanguageSideBar}>Language</button>
-            <button className="red-btn" onClick={this.generateTree}>RUN</button>
-            <button className="white-empty-btn" onClick={this.explanation}>Info</button>
-          </div>
+      <div>
+        <div>
+          <LanguageSideBar 
+            sideBarStyle={this.state.sideBarStyle} 
+            currentLanguage={this.state.currentLanguage}
+            toggleSideBar={this.toggleSideBar.bind(this)}
+          />
         </div>
-        <div className="display-tree">
-          <TreeRenderer key={this.state.nbr_iterations} values={this.state.values} actions={this.state.actions} />
+        <div className="displays">
+          <div className="display-editor">
+            <CodeMirror value={this.state.code} onChange={this.updateCode} options={options} />
+            <div className="buttons">
+              <button className="white-empty-btn" 
+                onClick={this.toggleSideBar.bind(this, 'side-bar-toggled')}
+              >
+                {this.state.currentLanguage} 
+              </button>
+              <button className="red-btn" onClick={this.generateTree}>RUN</button>
+              <button className="white-empty-btn" onClick={this.explanation}>Info</button>
+            </div>
+          </div>
+          <div className="display-tree">
+            <TreeRenderer key={this.state.nbr_iterations} values={this.state.values} actions={this.state.actions} />
+          </div>
         </div>
       </div>
     )

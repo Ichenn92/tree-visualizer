@@ -1,17 +1,77 @@
 .side-bar, .side-bar-toggled{
   position: absolute;
+  padding-left: 10px;
   left: -280px;
-  display: flex;
-  width: 280px;
-  height: 100%;
+  top: 0;
+  width: 270px;
+  height: 100vh;
   z-index: 10;
   background-color: white;
   transition: 0.5s;
+  box-shadow: 20px 0px 30px rgba(0, 0, 0, 0.14);
 }
 
 .side-bar-toggled{
   transform: translateX(+280px);
   transition: 0.5s;
+}
+
+.title-container{
+  padding-left: 20px;
+  margin-top: 130px;
+  margin-bottom: 20px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  letter-spacing: 0.15px;
+  color: rgba(0, 0, 0, 0.87);
+  mix-blend-mode: normal;
+}
+
+.languages{
+  margin-top: 30px;
+}
+
+.languages > li{
+  padding: 20px 0 20px 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  color: rgba(0, 0, 0, 0.87);
+  mix-blend-mode: normal;
+}
+
+li.language::before{
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.54);
+  content: "♥ ";
+}
+
+.language:hover{
+  background-color: #E9F4FC;
+  transition: 0.3s;
+}
+
+.language:active{
+  background-color: #c7e2f6 !important;
+  transition: 0.2s;
+}
+
+#current-language{
+  background-color: #E9F4FC;
+}
+
+#current-language::before{
+  font-size: 20px;
+  color: #313335;
+  content: "♥ ";
 }
 
 .btn{
