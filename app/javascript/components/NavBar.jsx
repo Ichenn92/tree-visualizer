@@ -12,16 +12,16 @@ class NavBar extends Component {
         </div>
         <ul className="nav-links">
           <li>
-            <a href="#">What is Binary Tree</a>
+            <a href="/learn">What is Binary Tree</a>
           </li>
           <li>
-            <a href="#">Practice</a>
+            <a href="/">Practice</a>
           </li>
           <li>
             <a href="#">About Us</a>
           </li>
           <li>
-            <a href="#">Github Project</a>
+            <a href="https://github.com/Ichenn92/tree-visualizer">Github Project</a>
           </li>
         </ul>
       </nav>
