@@ -27,6 +27,7 @@
 
 .display-tree{
   flex-basis: 100%;
+  overflow: hidden;
   height: 877px;
   padding: 34px;
   margin: 15px;

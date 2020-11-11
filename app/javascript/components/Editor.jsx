@@ -65,8 +65,8 @@ Here are the build-in method to play around with the binary tree
       });
   }
 
-  toggleSideBar = (newStyle) => {
-    this.setState({ sideBarStyle: newStyle });
+  toggleSideBar = (newStyle, newLanguage) => {
+    this.setState({ sideBarStyle: newStyle, currentLanguage: newLanguage });
   }
 
   render() {
@@ -90,7 +90,7 @@ Here are the build-in method to play around with the binary tree
             <CodeMirror value={this.state.code} onChange={this.updateCode} options={options} />
             <div className="buttons">
               <button className="white-empty-btn" 
-                onClick={this.toggleSideBar.bind(this, 'side-bar-toggled')}
+                onClick={this.toggleSideBar.bind(this, 'side-bar-toggled', this.state.currentLanguage)}
               >
                 {this.state.currentLanguage} 
               </button>

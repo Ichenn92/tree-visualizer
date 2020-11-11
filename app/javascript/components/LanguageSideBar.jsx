@@ -2,17 +2,9 @@ import React, { Component } from "react";
 import OutsideClickHandler from 'react-outside-click-handler';
 import "../stylesheets/language-side-bar.css";
 
-function changeLanguage(languageSelected) {
-        this.props.toggleSideBar('side-bar')
-}
 
-function htmlInLiTag(list, currentLanguage) {
-  return list.map((e) => {
-    return (e == currentLanguage) ? 
-      <li key={e} className="language" id="current-language" onClick={() => console.log({e})}>{e}</li>
-      : <li key={e} className="language" onClick={() => console.log({e})}>{e}</li>
-  })
-}
+
+
 
 class LanguageSideBar extends Component {
   constructor(props) {
@@ -23,11 +15,24 @@ class LanguageSideBar extends Component {
     };
   }
 
+  changeLanguage = (languageSelected) => {
+    console.log("bonjour")
+    this.props.toggleSideBar('side-bar', languageSelected)
+  }
+
+  htmlInLiTag = (list, currentLanguage) => {
+    return list.map((e) => {
+      return (e == currentLanguage) ? 
+        <li key={e} className="language" id="current-language" onClick={this.changeLanguage.bind(this, e)}>{e}</li>
+        : <li key={e} className="language" onClick={this.changeLanguage.bind(this, e)}>{e}</li>
+    })
+  }
+
   render() {
     return (
     <OutsideClickHandler
       onOutsideClick={() => {
-        this.props.toggleSideBar('side-bar')
+        this.props.toggleSideBar('side-bar', this.props.currentLanguage)
       }}
     >
       <div className={this.props.sideBarStyle}>
@@ -36,7 +41,7 @@ class LanguageSideBar extends Component {
         </div>
         <div>
           <ul className="languages">
-            {htmlInLiTag(this.state.supportedLanguages, this.props.currentLanguage)}
+            {this.htmlInLiTag(this.state.supportedLanguages, this.props.currentLanguage)}
           </ul>
         </div>
       </div>
