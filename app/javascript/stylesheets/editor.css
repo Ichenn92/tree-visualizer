@@ -9,9 +9,8 @@
 
 
 .display-editor{
-  display: flex;
-  flex-direction: column;
   flex-basis: 100%;
+  overflow: hidden;
   height: 100%;
   width: 5%;
   padding: 34px;
@@ -36,7 +35,7 @@
 }
 
 .CodeMirror{
-  height: 800px;
+  height: 732px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -47,6 +46,19 @@
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+}
+
+.full-red-btn{
+  position: relative;
+  top: 34px;
+  text-align: center;
+  margin-left: -34px;
+  width: calc(100% + 68px);
+  height: 68px;
+  background-color: var(--red);
+  color: white;
+  border-style: none;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .red-btn{

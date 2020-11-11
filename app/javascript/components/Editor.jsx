@@ -72,7 +72,7 @@ Here are the build-in method to play around with the binary tree
   render() {
     let options = {
       lineNumbers: true,
-      mode: this.state.currentLanguage,
+      mode: this.state.currentLanguage.toLowerCase(),
       tabSize: 2,
       theme: "darcula",
     };
@@ -94,8 +94,10 @@ Here are the build-in method to play around with the binary tree
               >
                 {this.state.currentLanguage} 
               </button>
-              <button className="red-btn" onClick={this.generateTree}>RUN</button>
               <button className="white-empty-btn" onClick={this.explanation}>Info</button>
+            </div>
+            <div>
+              <button className="full-red-btn" onClick={this.generateTree}>RUN</button>
             </div>
           </div>
           <div className="display-tree">
