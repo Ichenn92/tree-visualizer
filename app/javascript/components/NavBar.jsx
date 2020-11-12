@@ -7,10 +7,12 @@ class NavBar extends Component {
     return (
       <nav>
         <img id="curve-bg" src={CurveBG} alt="CurveBF" />
-        <div className="brand-name">
-          <p>EAZYTREE</p>
-        </div>
         <ul className="nav-links">
+          <li>
+            <div className="brand-name">
+              <p>EAZYTREE</p>
+            </div>
+          </li>
           <li>
             <a href="/learn">What is Binary Tree</a>
           </li>
@@ -24,6 +26,11 @@ class NavBar extends Component {
             <a href="https://github.com/Ichenn92/tree-visualizer">Github Project</a>
           </li>
         </ul>
+        <div className="burger">
+          <div className="line1"></div>
+          <div className="line2"></div>
+          <div className="line3"></div>
+        </div>
       </nav>
     );
   }
