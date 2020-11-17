@@ -8,6 +8,11 @@ function default_setup(p5, canvasParentRef) {}
 function default_draw(p5) {};
 
 export default (props) => {
+
+    const BG_COLOR = props.bgColor || "#424B54";
+    const NODE_COLOR = props.nodeColor || "#4CABE5";
+    const ACTIVE_NODE_COLOR = props.activeNodeColor || 200;
+
     // Sizes of the canvas
     const WIDTH_SIZE = props.width || 500;
     const HEIGHT_SIZE = props.height || 500;
@@ -25,7 +30,7 @@ export default (props) => {
 
     // Dimensions of the tree
     const WIDTH = (MAX_NODE_PER_LINE + 1) * WIDTH_UNIT;
-    const HEIGHT = (DEPTH + 1) * HEIGHT_UNIT ;
+    // const HEIGHT = (DEPTH + 1) * HEIGHT_UNIT;
 
     const FONT_SIZE = 20;
 
@@ -82,19 +87,38 @@ export default (props) => {
         // use parent to render the canvas in this ref
         // (without that p5 will render the canvas outside of your component)
         p5.createCanvas(WIDTH_SIZE, HEIGHT_SIZE).parent(canvasParentRef);
+        p5.rectMode(p5.CENTER);
         p5.textSize(FONT_SIZE);
+        p5.textAlign(p5.CENTER, p5.CENTER);
     };
  
     const draw = (p5) => {
-        p5.background(55);
+        p5.background(BG_COLOR);
 
         p5.translate(offsetX, offsetY);
         p5.scale(scale);
 
         let nodes = node_levels.list;
+        p5.fill(100);
+        for(let node of nodes) {  // for .. in take indices as string, since array are dict with Number as key
+            let parent = node.parent;
+            let index = node.index;
+            let depth = node.depth;
+
+            let unit = WIDTH / (Math.pow(2, depth) + 1);
+            let x = unit * (index + 1) - HALF_RECT;  // to center at this position
+            let y = HEIGHT_UNIT * (depth + 1);
+            
+
+            if(parent != null) {
+                let previous_unit = WIDTH / (Math.pow(2, depth - 1) + 1);;
+                let parent_x = previous_unit * (parent + 1) - HALF_RECT;
+                let parent_y = HEIGHT_UNIT * depth + RECT_SIZE;
+                p5.line(x, y, parent_x, parent_y - RECT_SIZE);
+            }
+        }
         for(let node of nodes) {  // for .. in take indices as string, since array are dict with Number as key
             let value = node.value;
-            let parent = node.parent;
             let index = node.index;
             let depth = node.depth;
             let current = node.current;
@@ -102,25 +126,17 @@ export default (props) => {
             let unit = WIDTH / (Math.pow(2, depth) + 1);
             let x = unit * (index + 1) - HALF_RECT;  // to center at this position
             let y = HEIGHT_UNIT * (depth + 1);
-            
-            p5.fill(100);
 
-            if(parent != null) {
-                let previous_unit = WIDTH / (Math.pow(2, depth - 1) + 1);;
-                let parent_x = previous_unit * (parent + 1) - HALF_RECT;
-                let parent_y = HEIGHT_UNIT * depth + RECT_SIZE;
-                // let parent_y = HEIGHT_UNIT * (2 * depth - 1) + RECT_SIZE;
-                p5.line(x + HALF_RECT, y, parent_x + HALF_RECT, parent_y);
-            }
-
-            let color = 100;
+            let color = NODE_COLOR;
             if(current)
-                color = 200;
+                color = ACTIVE_NODE_COLOR;
 
             p5.fill(color);
-            p5.rect(x, y, RECT_SIZE, RECT_SIZE);
+            p5.circle(x, y, RECT_SIZE);
+            // p5.fill(150);
+            // p5.rect(x, y, RECT_SIZE, RECT_SIZE);
             p5.fill(0);
-            p5.text(value, x, y);
+            p5.text(value, x, y, RECT_SIZE, RECT_SIZE);
         }
         
     };
