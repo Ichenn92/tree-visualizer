@@ -24,6 +24,9 @@ class TreeRenderer extends React.Component {
       tree: tree,
       currentState: 0,
       value: 0,
+      scale: null,
+      offsetX: null,
+      offsetY: null
     };
 
     this.first_state = this.first_state.bind(this);
@@ -34,6 +37,22 @@ class TreeRenderer extends React.Component {
 
     this.add = this.add.bind(this);
     this.pop = this.pop.bind(this);
+
+    this.onChangeOffset = this.onChangeOffset.bind(this);
+    this.onChangeScale = this.onChangeScale.bind(this);
+  }
+
+  onChangeOffset(offsetX, offsetY) {
+    this.setState({
+      offsetX,
+      offsetY
+    });
+  }
+
+  onChangeScale(scale) {
+    this.setState({
+      scale
+    });
   }
 
   add() {
@@ -72,6 +91,8 @@ class TreeRenderer extends React.Component {
             state={this.state.tree.states[this.state.currentState]}
             width={ this.state.width }
             height={ this.state.height }
+            onChangeOffset={ this.onChangeOffset }
+            onChangeScale={ this.onChangeScale }
           />
         <button onClick={this.add}>Add</button>
         <button onClick={this.pop}>Delete</button>

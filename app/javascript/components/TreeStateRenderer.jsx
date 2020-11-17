@@ -9,6 +9,16 @@ function default_draw(p5) {};
 
 export default (props) => {
 
+    function onChangeOffset(x, y) {
+        if(props.onChangeOffset)
+            props.onChangeOffset(x, y);
+    }
+
+    function onChangeScale(scale) {
+        if(props.onChangeScale)
+            props.onChangeScale(scale);
+    }
+
     const BG_COLOR = props.bgColor || "#424B54";
     const NODE_COLOR = props.nodeColor || "#4CABE5";
     const ACTIVE_NODE_COLOR = props.activeNodeColor || 200;
@@ -37,10 +47,9 @@ export default (props) => {
     const [ mouseX, setMouseX ] = useState(0);
     const [ mouseY, setMouseY ] = useState(0);
     const [ dragging, setDragging ] = useState(false);
-    const [ scale, setScale ] = useState(1);
-    const [ offsetX, setOffsetX ] = useState((WIDTH_SIZE - WIDTH) / 2);
-    const [ offsetY, setOffsetY ] = useState(0);
-
+    const [ scale, setScale ] = useState(props.scale || 1);
+    const [ offsetX, setOffsetX ] = useState(props.offsetX || ((WIDTH_SIZE - WIDTH) / 2));
+    const [ offsetY, setOffsetY ] = useState(props.offsetY || 0);
 
     function onWheel(e) {
         e.preventDefault();
@@ -49,7 +58,8 @@ export default (props) => {
         setScale(scale * delta);
         setOffsetX(e.clientX * (1 - delta) + offsetX * delta);
         setOffsetY(e.clientY * (1 - delta) + offsetY * delta);
-        
+        onChangeScale(scale);
+        onChangeOffset(offsetX, offsetY);
     }
 
     function onMouseUp(e) {
@@ -80,6 +90,7 @@ export default (props) => {
         setMouseX(e.clientX);
         setMouseY(e.clientY);
 
+        onChangeOffset(offsetX, offsetY);
     }
 
 
