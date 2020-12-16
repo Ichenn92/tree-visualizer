@@ -7,4 +7,7 @@ class HomepageController < ApplicationController
   def run
     render json: eval(params[:code])
   end
+
+  def learn
+  end
 end
