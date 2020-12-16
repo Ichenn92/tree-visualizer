@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Monofett&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root{
+  --main-bg-color: #424B54;
+  --red: #EB5757;
+}
+
+html, body, #app, #app>div{
+  overflow: hidden;
+  background-color: var(--main-bg-color);
+}
+
+*{
+  margin: 0px;
+  padding: 0px;
+  text-decoration: none;
+  list-style: none;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 25px;
+}
